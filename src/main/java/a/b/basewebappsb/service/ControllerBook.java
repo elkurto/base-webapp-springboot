@@ -2,6 +2,8 @@ package a.b.basewebappsb.service;
 
 import a.b.basewebappsb.domain.Book;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.UUID;
@@ -19,7 +21,7 @@ public class ControllerBook {
         return "This is the /book controller";
     }
 
-    @GetMapping("/one/:id")
+    @GetMapping("/one/{id}")
     public Book getById(@PathVariable UUID id) {
         return this.serviceBook.get(id);
     }
@@ -30,7 +32,17 @@ public class ControllerBook {
     }
 
     @PostMapping("/one")
-    public Book upsert(Book book) {
-        return this.serviceBook.upsert(book);
+    public ResponseEntity<Book> upsert(@RequestBody Book book, UriComponentsBuilder uriBuilder) {
+        Book bookUpdated =this.serviceBook.upsert(book);
+        var newBookUri = uriBuilder.path("/books/{isbn}").build(bookUpdated.id);
+
+        return ResponseEntity.created(newBookUri).body(bookUpdated);
+    }
+
+    @DeleteMapping("/one/{id}")
+    public ResponseEntity<String> remove(@PathVariable UUID id) {
+        this.serviceBook.removeById(id);
+
+        return ResponseEntity.noContent().build();
     }
 }
