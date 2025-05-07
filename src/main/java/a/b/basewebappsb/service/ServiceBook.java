@@ -26,18 +26,19 @@ public class ServiceBook {
 
     public ServiceBook() {}
 
-    public void upsert(Book book) {
+    public Book upsert(Book book) {
         if (book != null) {
             if (book.id == null) {
                 book.id = UUID.randomUUID();
             }
             mapIdBook.put( book.id, book);
         }
+        return book;
     }
 
     public void removeById(UUID id) {
-        if ( book.id != null ) {
-            mapIdBook.remove(book.id);
+        if ( id != null ) {
+            mapIdBook.remove(id);
         }
     }
     public void remove(Book book) {
