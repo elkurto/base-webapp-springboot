@@ -1,5 +1,6 @@
 package a.b.basewebappsb.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.boot.test.mock.mockito.MockBean;
+
 import static org.springframework.test.web.servlet.result.
         MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.
@@ -16,6 +19,10 @@ public class TestControllerBook {
 
     @Autowired
     private MockMvc mockMvc;
+    private final ObjectMapper mapper = new ObjectMapper();
+
+    @MockBean
+    private ServiceBook serviceBook;
 
     @Test
     void testIndex() throws Exception {
@@ -27,4 +34,7 @@ public class TestControllerBook {
                 .andExpect(content().contentTypeCompatibleWith( MediaType.TEXT_PLAIN));
 
     }
+
+
+
 }

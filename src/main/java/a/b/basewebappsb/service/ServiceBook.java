@@ -1,11 +1,12 @@
 package a.b.basewebappsb.service;
 
 import a.b.basewebappsb.domain.Book;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-@Service
+@Component
 public class ServiceBook {
     private static final Map<UUID,Book> mapIdBook =new HashMap<>();
     static {
