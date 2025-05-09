@@ -1,5 +1,6 @@
 package a.b.basewebappsb.service;
 
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -9,8 +10,11 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-//import org.springframework.boot.test.mock.mockito.MockitoBean;
+import a.b.basewebappsb.domain.Book;
 
+import java.util.UUID;
+
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.
         MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.
@@ -36,6 +40,19 @@ public class TestControllerBook {
 
     }
 
+    @Test
+    void testGetOneByUuid() throws Exception {
+        // given
+        UUID uuid = UUID.randomUUID();
+        Book book = new Book(uuid, "foo","bar", 123456);
 
+        when(serviceBook.get(uuid)).thenReturn(book);
+
+        // when
+        mockMvc.perform(MockMvcRequestBuilders.get("/one/"+ uuid.toString()))
+                .andExpect(status().isOk())
+                ;
+
+    }
 
 }
