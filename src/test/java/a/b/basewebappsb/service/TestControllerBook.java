@@ -11,6 +11,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import a.b.basewebappsb.domain.Book;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.UUID;
 
@@ -51,7 +52,12 @@ public class TestControllerBook {
         // when
         mockMvc.perform(MockMvcRequestBuilders.get("/one/"+ uuid.toString()))
                 .andExpect(status().isOk())
-                ;
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(uuid.toString()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("foo"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.author").value("bar"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.createdAt").value(123456))
+
+        ;
 
     }
 
