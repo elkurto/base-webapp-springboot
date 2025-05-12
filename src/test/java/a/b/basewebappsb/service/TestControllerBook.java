@@ -61,4 +61,13 @@ public class TestControllerBook {
 
     }
 
+    @Test
+    void testShouldReturn404WhenNotFound() throws Exception {
+        UUID uuid = UUID.randomUUID();
+        when(serviceBook.get(uuid)).thenReturn(null);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/one/"+ uuid.toString()))
+                .andExpect(status().isNotFound());
+    }
+
 }

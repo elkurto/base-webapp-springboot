@@ -28,7 +28,7 @@ public class ControllerBook {
 
         Book book = serviceBook.get(id);
         if (book == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Resource not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "404 - no book with id (="+ id +")");
         }
         return this.serviceBook.get(id);
     }
