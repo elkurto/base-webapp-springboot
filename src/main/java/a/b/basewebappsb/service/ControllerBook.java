@@ -1,7 +1,9 @@
 package a.b.basewebappsb.service;
 
 import a.b.basewebappsb.domain.Book;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 
@@ -23,6 +25,11 @@ public class ControllerBook {
 
     @GetMapping("/one/{id}")
     public Book getById(@PathVariable UUID id) {
+
+        Book book = serviceBook.get(id);
+        if (book == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Resource not found");
+        }
         return this.serviceBook.get(id);
     }
 
