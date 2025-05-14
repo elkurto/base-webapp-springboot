@@ -48,3 +48,12 @@ src= https://www.postgresql.org/docs/current/app-psql.html
   (1 row)
   
   ```
+
+
+
+```sql
+create table Book (id uuid PRIMARY KEY not null, name varchar(128), author varchar(128), created_at bigint);
+
+
+
+```
