@@ -1,6 +1,7 @@
 build/
 .idea/
 .gradle/
+.envrc
 # Compiled class file
 *.class
 
