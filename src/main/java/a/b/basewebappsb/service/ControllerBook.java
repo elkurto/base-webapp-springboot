@@ -6,7 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.UUID;
 
@@ -51,5 +55,20 @@ public class ControllerBook {
         this.serviceBook.removeById(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/all/flux")
+    public Flux<Book> getAllFlux() {
+        List<Book> listBook =this.serviceBook.getAll();
+        Flux<Book> fluxBook = Flux.fromIterable(listBook);
+        return fluxBook.delayElements( Duration.of(2, ChronoUnit.SECONDS));
+    }
+
+    @GetMapping("/all/mono")
+    public Mono<List<Book>> getAllMono() {
+        List<Book> listBook =this.serviceBook.getAll();
+        Flux<Book> fluxBook = Flux.fromIterable(listBook).delayElements(Duration.of(2, ChronoUnit.SECONDS));
+
+        return fluxBook.collectList();
     }
 }
