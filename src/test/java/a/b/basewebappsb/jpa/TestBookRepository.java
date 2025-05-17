@@ -29,6 +29,7 @@ public class TestBookRepository {
     @Test
     public void testSaveBook() {
         BookEntity book = new BookEntity(null, "foo","bar", System.currentTimeMillis());
+
         BookEntity bookSaved01 =bookRepository.save(book);
 
         Assertions.assertEquals(book.getId(), bookSaved01.getId());
