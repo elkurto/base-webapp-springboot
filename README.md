@@ -1,7 +1,13 @@
 # base-webapp-springboot
 a base project with SpringMVC (REST) and test support
 
-
+### references
+- Spring Boot 3 Recipes
+  - https://link.springer.com/979-8-8688-0113-6
+  - https://github.com/Apress/Deinum_Spring-Boot-3-Recipes/tree/main
+- Pro Spring 6
+  - https://link.springer.com/978-1-4842-8640-1
+  - https://github.com/Apress/pro-spring-6/tree/main
 
 
 
