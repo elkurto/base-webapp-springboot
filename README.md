@@ -8,7 +8,7 @@ a base project with SpringMVC (REST) and test support
 - Pro Spring 6
   - https://link.springer.com/978-1-4842-8640-1
   - https://github.com/Apress/pro-spring-6/tree/main
-
+- [Guide to JPA in SpringBoot](https://medium.com/@bshiramagond/jpa-with-spring-boot-a-comprehensive-guide-with-examples-e07da6f3d385)
 
 
 ## setup 
